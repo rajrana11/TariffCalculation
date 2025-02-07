@@ -1,4 +1,6 @@
-﻿using TariffCalculation.Model;
+﻿using Microsoft.OpenApi.Extensions;
+using TariffCalculation.Model;
+using static TariffCalculation.Constants.Constants;
 
 namespace TariffCalculation.service
 {
@@ -14,21 +16,23 @@ namespace TariffCalculation.service
             new TariffProduct
             {
                 Name = "Product A",
-                Type = 1,
+                Type = (int)TariffType.BasicElectricityTariff,
                 BaseCost = 5,
-                AdditionalKwhCost = 0.22m
+                AdditionalKwhCost = 0.22m,
+                ProducttypeName=BasicElectricityTariff
             },
             new TariffProduct
             {
                 Name = "Product B",
-                Type = 2,
+                Type = (int)TariffType.PackagedTariff,
                 BaseCost = 800,
                 AdditionalKwhCost = 0.30m,
-                IncludedKwh = 4000
+                IncludedKwh = 4000,
+                ProducttypeName=PackagedTariff
             }
         };
-        }
 
+        }
         public List<TariffCalculationResult> CompareTariffs(int consumptionKWh)
         {
             var results = _tariffProducts.Select(tariff =>
@@ -36,7 +40,7 @@ namespace TariffCalculation.service
                 var annualCost = CalculateAnnualCost(tariff, consumptionKWh);
                 return new TariffCalculationResult
                 {
-                    TariffName = tariff.Name,
+                    TariffName = tariff.ProducttypeName,
                     AnnualCost = annualCost
                 };
             })
@@ -50,19 +54,19 @@ namespace TariffCalculation.service
         {
             decimal annualCost = 0;
 
-            if (tariff.Type == 1) // Type 1: Basic electricity tariff
+            if (tariff.Type == (int)TariffType.BasicElectricityTariff) // Type 1: Basic electricity tariff
             {
                 annualCost = (tariff.BaseCost * 12) + (consumptionKWh * tariff.AdditionalKwhCost);
             }
-            else if (tariff.Type == 2) // Type 2: Packaged tariff
+            else if (tariff.Type == (int)TariffType.PackagedTariff) // Type 2: Packaged tariff
             {
-                if (consumptionKWh <= tariff.IncludedKwh)
+                if (consumptionKWh <= tariff.IncludedKwh.GetValueOrDefault())
                 {
                     annualCost = tariff.BaseCost;
                 }
                 else
                 {
-                    int additionalKWh = consumptionKWh - tariff.IncludedKwh.Value;
+                    int additionalKWh = consumptionKWh - tariff.IncludedKwh.GetValueOrDefault();
                     annualCost = tariff.BaseCost + (additionalKWh * tariff.AdditionalKwhCost);
                 }
             }
