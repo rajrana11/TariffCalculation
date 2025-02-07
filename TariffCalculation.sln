@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TariffCalculation", "Tariff
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumeAPI", "ConsumeAPI\ConsumeAPI.csproj", "{74C10D89-3D6B-46B0-BFA0-D4CB5007B8D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{5536F302-B3CA-4C94-8048-EF083E511565}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{1DAA7B22-F0D6-433C-B75A-C9FCC10E8912}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{74C10D89-3D6B-46B0-BFA0-D4CB5007B8D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74C10D89-3D6B-46B0-BFA0-D4CB5007B8D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74C10D89-3D6B-46B0-BFA0-D4CB5007B8D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5536F302-B3CA-4C94-8048-EF083E511565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5536F302-B3CA-4C94-8048-EF083E511565}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5536F302-B3CA-4C94-8048-EF083E511565}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5536F302-B3CA-4C94-8048-EF083E511565}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DAA7B22-F0D6-433C-B75A-C9FCC10E8912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DAA7B22-F0D6-433C-B75A-C9FCC10E8912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DAA7B22-F0D6-433C-B75A-C9FCC10E8912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DAA7B22-F0D6-433C-B75A-C9FCC10E8912}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
