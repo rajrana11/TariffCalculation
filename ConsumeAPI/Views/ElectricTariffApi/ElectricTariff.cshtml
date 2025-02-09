@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Elecric Traffic Cost Calculation";
+    
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Tariff Calculation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
+</head>
+<body>
+
+<div class="container mt-4">
+   <h2>Electric Tariff Calculation</h2>
+		<input type="text" id="txtTariif" class="form-control" placeholder="Enter Yearly Tariff Consumption" />
+		<input type="button" id="btnSubmit" class="btn btn-primary" value="Submit" />       
+</div>
+    <table id="gridTable" class="table table-bordered">
+        <thead>
+            <tr> 
+                <th>Tariff Name</th>
+                <th>Anual cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be populated here -->
+        </tbody>
+    </table>
+
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Listen for changes in the department select dropdown
+        $('#btnSubmit').on('click', function() {
+            var varconsumptionKWh = $('#txtTariif').val();
+                var regExp = "^\\d+$";
+                if(varconsumptionKWh.match(regExp)==null)
+                {
+                    alert("Only numberic field allowed");
+                    return false;
+                }
+             
+                // Make AJAX call to fetch filtered electric tariff api
+            $.ajax({
+                url: '@Url.Action("GetTariffCalculation", "ElectricTariffApi")',
+                type: 'POST',
+                data: { consumptionKWh: varconsumptionKWh },               
+                success: function (data) {
+                        var gridBody = $('#gridTable tbody');
+                        gridBody.empty(); // Clear the current grid
+                        // Loop through the returned data and append rows to the table
+                        $.each(data, function (index, item) {
+                            var row = '<tr>' +
+                                      '<td>' + item.tariffName + '</td>' +
+                                      '<td>' + item.annualCost + '</td>' +                                      
+                                      '</tr>';
+                            gridBody.append(row); // Append the row to the table
+                        });
+                        },                        
+                error: function(xhr, status, error) {
+                    console.error("Error fetching data: " + error);
+                }
+            });
+        });
+    });
+</script>

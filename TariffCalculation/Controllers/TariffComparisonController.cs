@@ -17,7 +17,7 @@ namespace TariffCalculation.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<TariffCalculationResult>> GetComparison(int consumptionKWh)
+        public ActionResult<List<TariffCalculationResult>> GetComparison([FromQuery] int consumptionKWh)
         {
             if (consumptionKWh <= 0)
             {
