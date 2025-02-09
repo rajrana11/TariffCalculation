@@ -7,11 +7,7 @@ namespace ConsumeAPI.Controllers
 {
     public class ElectricTariffApiController : Controller
     {
-        private readonly ILogger<ElectricTariffApiController> _logger;
-        public ElectricTariffApiController(ILogger<ElectricTariffApiController> logger)
-        {
-            _logger = logger;
-        }
+       
         public IActionResult ElectricTariff()
         {
             return View();
@@ -19,9 +15,8 @@ namespace ConsumeAPI.Controllers
 
         [HttpPost]
         public async Task<IActionResult> GetTariffCalculation(int consumptionKWh)
-        {
-            HttpClient httpClient = new HttpClient();
-            ApiCallElectricTariffService apiCallElectricTariffService = new ApiCallElectricTariffService(httpClient);
+        {           
+            ApiCallElectricTariffService apiCallElectricTariffService = new ApiCallElectricTariffService();
             var tariffCalculationResults = await apiCallElectricTariffService.GetTariffComparisonAsync(consumptionKWh);
             return Json(tariffCalculationResults);
         }
