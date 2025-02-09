@@ -10,7 +10,7 @@ then
     echo ".NET SDK 8.0 not found, installing..."
     
     # Download .NET SDK 8.0 (replace with the correct version if needed)
-    wget https://download.visualstudio.microsoft.com/download/pr/1cfc5ad7-bf8c-4020-8b24-d3a2593653a7/1c235340b7a0e5f60c90b8c07a9a1604/dotnet-sdk-8.0.0-linux-x64.tar.gz -O dotnet-sdk-8.0.0-linux-x64.tar.gz
+    wget https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-8.0.405-linux-x64-binaries -O dotnet-sdk-8.0.0-linux-x64.tar.gz
     
     # Extract the tar file to /usr/local/dotnet
     sudo mkdir -p /usr/local/dotnet
