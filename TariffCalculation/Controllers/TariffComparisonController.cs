@@ -9,11 +9,12 @@ namespace TariffCalculation.Controllers
     [ApiController]
     public class TariffComparisonController : ControllerBase
     {
-        private readonly TariffComparisonService _tariffComparisonService;
+        
+        private readonly ITariffComparisonService _tariffComparisonService;
 
-        public TariffComparisonController()
+        public TariffComparisonController(ITariffComparisonService tariffComparisonService)
         {
-            _tariffComparisonService = new TariffComparisonService();
+            _tariffComparisonService = tariffComparisonService;
         }
 
         [HttpGet]
