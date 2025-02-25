@@ -59,22 +59,7 @@ namespace UnitTest
             Assert.AreEqual(800m, productB.AnnualCost); // Base cost for Product B
         }
 
-        // Additional test to check if the tariff calculation handles edge cases correctly
-        [Fact]
-        public void CalculateAnnualCost_ShouldHandleNoAdditionalKWhForBasicTariff()
-        {
-            // Arrange
-            var calculateAnaulCost = new CalculateAnualCostbyTariif();
-            var tariffComparisonService = new TariffComparisonService(calculateAnaulCost);
-            var basicElectricityTariff = new TariffProduct
-            {
-                Type = (int)TariffType.BasicElectricityTariff,
-                BaseCost = 5,
-                AdditionalKwhCost = 0.22m
-            };
-        }
-
-            // Act
+        // Act
         public class TariffComparisonService : ITariffComparisonService
         {
             private readonly ICalculateAnaulCost _calculateAnaulCost;
@@ -102,7 +87,6 @@ namespace UnitTest
                     }
                 };
             }
-
             public List<TariffCalculationResult> CompareTariffs(int consumptionKWh)
             {
                 var results = new List<TariffCalculationResult>();
@@ -120,10 +104,10 @@ namespace UnitTest
                 return results.OrderBy(r => r.AnnualCost).ToList();
             }
         }
-                   
-        }
 
     }
+
+}
 
 
 
